@@ -3,6 +3,7 @@
   Created by Dario Salerno, February 2, 2011.
   Released into the public domain.
 */
+#define Whallera_Debug 1
 
 #ifndef Whallera_h
 #define Whallera_h
@@ -29,15 +30,15 @@
 #define WHALLERA_EXEC_ZENCODE_STATUS 0x41
 
 //Operating modes
-#define WHALLERA_DEVELOPMENT = 0x00
-#define WHALLERA_PROGRAMMING = 0xfe
-#define WHALLERA_PRODUCTION = 0xff 
+#define WHALLERA_DEVELOPMENT 0x00
+#define WHALLERA_PROGRAMMING 0xfe
+#define WHALLERA_PRODUCTION 0xff 
 
 //Led configuration
-#define WHALLERA_LED_ALWAYS_OFF = 0x00
-#define WHALLERA_LED_ALWAYS_ON = 0x01
-#define WHALLERA_LED_BLINK_ON_ZENCODE = 0x02
-#define WHALLERA_LED_BLINK_ON_SERIAL = 0x03
+#define WHALLERA_LED_ALWAYS_OFF 0x00
+#define WHALLERA_LED_ALWAYS_ON 0x01
+#define WHALLERA_LED_BLINK_ON_ZENCODE 0x02
+#define WHALLERA_LED_BLINK_ON_SERIAL 0x03
 
 //Status codes
 #define WHALLERA_OK 0x00

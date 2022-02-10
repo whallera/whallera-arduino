@@ -120,10 +120,26 @@ uint8_t Whallera::write_read(uint8_t cmd, char* write_buffer, size_t write_buffe
     size_t i = 0;
     uint8_t status;
     
+    
     Wire.beginTransmission(WHALLERA_I2C_ADDR);
     Wire.write(cmd);
+
+    #ifdef Whallera_Debug
+    Serial.print("CMD: 0x");
+    Serial.print(cmd, HEX);
+    #endif 
+    
     Wire.write(write_buffer, write_buffer_size);
 
+    #ifdef Whallera_Debug
+    Serial.print(" Payload:");
+    for(int y = 0; y < write_buffer_size; y++){
+        Serial.print(" 0x");
+        Serial.print(write_buffer[y], HEX & 0xff);
+    }
+    Serial.println("");
+    #endif 
+    
     Wire.requestFrom(WHALLERA_I2C_ADDR, read_buffer_size + 1);
     while(Wire.available()){
       if( i == 0 ){
@@ -139,8 +155,8 @@ uint8_t Whallera::write_read(uint8_t cmd, char* write_buffer, size_t write_buffe
 
 }
 
-
-void little_int16(uint16_t i, char *buffer){
+//Convert an uint16 in to a little endian char buffer
+void Whallera::little_int16(uint16_t i, char *buffer){
   char *p;
   p = buffer;
   *p = ( i >> 8 ) & 0xff;
@@ -148,7 +164,8 @@ void little_int16(uint16_t i, char *buffer){
   *p = i & 0xff;
 }
 
-void little_int32(uint32_t i, char *buffer){
+//Convert an uint32 in to a little endian char buffer
+void Whallera::little_int32(uint32_t i, char *buffer){
   char *p ;
   p = buffer;
   *p = ( i >> 24 ) & 0xff;
